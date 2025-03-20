@@ -1,0 +1,10 @@
+---
+Define variables for OpenStack services:
+openstack_release: "2024.1"
+mysql_root_password: "securepassword"
+keystone_admin_password: "adminpassword"
+nova_db_password: "novaDBpass"
+nova_api_host: "localhost"
+swift_hash_path_prefix: "randomhashprefix"
+swift_hash_path_suffix: "randomhashsuffix"
+trove_db_password: "troveDBpass"

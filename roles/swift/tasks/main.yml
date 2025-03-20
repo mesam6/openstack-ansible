@@ -1,0 +1,28 @@
+---
+- name: Install Swift
+  apt:
+    name:
+      - swift
+      - swift-proxy
+      - swift-account
+      - swift-container
+      - swift-object
+    state: present
+
+- name: Configure Swift
+  template:
+    src: swift.conf.j2
+    dest: /etc/swift/swift.conf
+    owner: swift
+    group: swift
+    mode: 0644
+
+- name: Restart Swift services
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - swift-proxy
+    - swift-account
+    - swift-container
+    - swift-object

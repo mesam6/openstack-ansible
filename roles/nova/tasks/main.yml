@@ -1,0 +1,27 @@
+---
+- name: Install Nova
+  apt:
+    name:
+      - nova-api
+      - nova-conductor
+      - nova-scheduler
+      - nova-compute
+    state: present
+
+- name: Configure Nova
+  template:
+    src: nova.conf.j2
+    dest: /etc/nova/nova.conf
+    owner: nova
+    group: nova
+    mode: 0644
+
+- name: Restart Nova services
+  systemd:
+    name: "{{ item }}"
+    state: restarted
+  loop:
+    - nova-api
+    - nova-conductor
+    - nova-scheduler
+    - nova-compute

@@ -1,0 +1,29 @@
+---
+- name: Install Trove
+  apt:
+    name:
+      - trove-api
+      - trove-taskmanager
+      - trove-conductor
+    state: present
+
+- name: Configure Trove
+  template:
+    src: trove.conf.j2
+    dest: /etc/trove/trove.conf
+    owner: trove
+    group: trove
+    mode: 0644
+
+- name: Restart Trove services
+  systemd:
+    name: "{{ item }}"
+
+
+    state: restarted
+  loop:
+    - trove-api
+    - trove-taskmanager
+    - trove-conductor
+
+
