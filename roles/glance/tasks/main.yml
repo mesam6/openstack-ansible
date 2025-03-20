@@ -1,0 +1,17 @@
+---
+- name: Install Glance
+  apt:
+    name:
+      - glance
+    state: present
+
+- name: Configure Glance
+  template:
+    src: glance-api.conf.j2
+    dest: /etc/glance/glance-api.conf
+
+- name: Restart Glance Services
+  systemd:
+    name: glance-api
+    enabled: yes
+    state: restarted

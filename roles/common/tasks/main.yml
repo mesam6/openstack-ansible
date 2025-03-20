@@ -1,0 +1,15 @@
+---
+- name: Update and upgrade packages
+  apt:
+    update_cache: yes
+    upgrade: dist
+
+- name: Install OpenStack client and dependencies
+  apt:
+    name:
+      - python3-openstackclient
+      - python3-pip
+      - git
+    state: present
+
+

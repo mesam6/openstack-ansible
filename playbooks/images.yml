@@ -1,0 +1,5 @@
+---
+- hosts: controller
+  become: true
+  roles:
+    - glance

@@ -1,0 +1,9 @@
+all:
+  hosts:
+    controller:
+      ansible_host: localhost
+      ansible_connection: local
+  children:
+    openstack:
+      hosts:
+        controller
